@@ -38,7 +38,7 @@ class UserRoles extends \Bitfalls\Phalcon\Model
 
         /** Set up M:M relationship with Users */
         $this->hasMany('slug', 'UsersRoles', 'role_slug');
-        $this->hasManyThrough('Users', 'UsersRoles');
+    //$this->hasManyThrough('Users', 'UsersRoles');
 
 
     }
