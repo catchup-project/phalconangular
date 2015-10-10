@@ -2,3 +2,4 @@
 .config
 .idea
 .git
+/app/config/config.php
