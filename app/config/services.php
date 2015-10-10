@@ -2,7 +2,6 @@
 
 use Phalcon\DI\FactoryDefault,
     Phalcon\Mvc\View,
-    Bitfalls\Phalcon\Security,
     Phalcon\Mvc\Url as UrlResolver,
     Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter,
     Phalcon\Mvc\View\Engine\Volt as VoltEngine,
@@ -86,11 +85,15 @@ $di->set('cookies', function () {
     return $oCookies;
 });
 
+
+/**
+ * Dispatcher use a default namespace
+ */
 $di->set('dispatcher', function () use ($di) {
 
     $eventsManager = $di->getShared('eventsManager');
 
-    $security = new Security($di);
+  $security = new Bitfalls\Phalcon\Security($di);
 
     /**
      * We listen for events in the dispatcher using the Security plugin
@@ -98,59 +101,36 @@ $di->set('dispatcher', function () use ($di) {
     $eventsManager->attach('dispatch', $security);
 
     $dispatcher = new Phalcon\Mvc\Dispatcher();
+  	//$dispatcher->setDefaultNamespace('Frontend\Controllers');
     $dispatcher->setEventsManager($eventsManager);
 
     return $dispatcher;
 });
 
-$di->set('router', function () use ($aModules) {
 
-    $router = new \Phalcon\Mvc\Router();
-    $router->removeExtraSlashes(true);
+/**
+ * add router support.
+ */
+$di->set('router', function () {
+  $router = require __DIR__ . '/routes.php';
 
-    $router->setDefaultModule($aModules[0]);
+  $sFilePath = __DIR__ . '/../admin/config/routes.php';
+  if (is_readable($sFilePath)) {
+    include_once $sFilePath;
+  }
 
-    foreach ($aModules as $i => &$sModule) {
+  /*
+  $sFilePath = __DIR__ . '/../frontend/config/routes.php';
+  if (is_readable($sFilePath)) {
+    include_once $sFilePath;
+  }
+  */
 
-        $aDefaults = array(
-            'module' => $sModule,
-            'controller' => 'index',
-            'action' => 'index',
-        );
-
-        $aDefaultAction = array(
-            'module' => $sModule,
-            'controller' => 1,
-            'action' => 'index',
-        );
-
-        $aControllerAction = array(
-            'module' => $sModule,
-            'controller' => 1,
-            'action' => 2,
-        );
+  return $router;
+}); /* End the Router Support */
 
 
-        $router->add('/' . $sModule, $aDefaults);
-        $router->add('/' . $sModule . '/:controller', $aDefaultAction);
-        $router->add('/' . $sModule . '/:controller/:action', $aControllerAction);
-        $router->add('/' . $sModule . '/:controller/:action/:params', array(
-            'module' => $sModule,
-            'controller' => 1,
-            'action' => 2,
-            'params' => 3
-        ));
 
-        $sFilePath = __DIR__ . '/../' . $sModule . '/config/routes.php';
-        if (is_readable($sFilePath)) {
-            include_once $sFilePath;
-        }
-
-    }
-
-    return $router;
-
-});
 
 $aServices = array(
     // Generic
