@@ -1,7 +1,5 @@
 {
     "require":{
-        "php": ">=5.4.0",
-        "swiftmailer/swiftmailer":"v4.3.0",
-        "ext-imap": "*"
+        "php": ">=5.4.0"
     }
 }
