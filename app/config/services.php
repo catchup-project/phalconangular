@@ -101,7 +101,7 @@ $di->set('dispatcher', function () use ($di) {
     $eventsManager->attach('dispatch', $security);
 
     $dispatcher = new Phalcon\Mvc\Dispatcher();
-  	//$dispatcher->setDefaultNamespace('Frontend\Controllers');
+  	$dispatcher->setDefaultNamespace('Frontend\Controllers');
     $dispatcher->setEventsManager($eventsManager);
 
     return $dispatcher;
