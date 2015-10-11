@@ -6,6 +6,13 @@ $router = new Phalcon\Mvc\Router();
 
 $router->removeExtraSlashes(true);
 
+$router->setDefaults(array(
+  'namespace'  => 'Admin\Controllers',
+  'module'     => 'admin',
+  'controller' => 'index',
+  'action' => 'index'
+));
+
 $aDefaults = array(
   'namespace'  => 'Admin\Controllers',
   'module'     => 'admin',

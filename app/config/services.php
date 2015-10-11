@@ -90,6 +90,18 @@ $di->set('cookies', function () {
   return $oCookies;
 });
 
+/**
+ * Dispatcher use a default namespace
+ */
+/*
+$di->set('dispatcher', function () {
+  $dispatcher = new Dispatcher();
+  $dispatcher->setDefaultNamespace('Vokuro\Controllers');
+  return $dispatcher;
+});
+*/
+
+
 $di->set('dispatcher', function () use ($di) {
 
   $eventsManager = $di->getShared('eventsManager');
@@ -102,6 +114,7 @@ $di->set('dispatcher', function () use ($di) {
   $eventsManager->attach('dispatch', $security);
 
   $dispatcher = new Phalcon\Mvc\Dispatcher();
+  //$dispatcher->setDefaultNamespace('Frontend\Controllers');
   $dispatcher->setEventsManager($eventsManager);
 
   return $dispatcher;
@@ -112,6 +125,9 @@ $di->set('dispatcher', function () use ($di) {
  * add router support.
  */
 $di->set('router', function () {
+
+
+
   $router = require __DIR__ . '/routes.php';
 
   $sFilePath = __DIR__ . '/../admin/config/routes.php';
