@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontend;
+namespace Modules\Frontend;
 
 
 use Bitfalls\Phalcon\ModuleConfig;

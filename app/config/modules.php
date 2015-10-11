@@ -1,24 +1,24 @@
 <?php
 
 // @todo [phalconbegins][multi modules] register modules here.
+/*
+define('APP_PATH', realpath('..') . '/');
+define('BASE_DIR', str_replace('\\', '/', dirname(__DIR__)));
+define('APP_DIR', BASE_DIR . '/app');
+*/
 // register modules -------------------------------------------------------------------------
 
 $application->registerModules(
   array(
-    'admin' => array(
-      'namespace' => 'Modules\Companies',
-      'className' => 'Modules\Companies\Module',
-      'path'      => APP_DIR . '/../modules/companies/Module.php',
+    'frontend'      => array(
+      'namespace' => 'Modules\Frontend',
+      'className' => 'Modules\Frontend\Module',
+      'path'      => APP_DIR . '/frontend/Module.php',
     ),
     'backend' => array(
-      'namespace' => 'Modules\Companies',
-      'className' => 'Modules\Companies\Module',
-      'path'      => APP_DIR . '/../modules/companies/Module.php',
-    ),
-    'frontend'      => array(
-      'namespace' => 'Vokuro',
-      'className' => 'Vokuro\Module',
-      'path'      => APP_DIR . '/../app/Module.php',
+      'namespace' => 'Modules\Backend',
+      'className' => 'Modules\Backend\Module',
+      'path'      => APP_DIR . '/backend/Module.php',
     ),
   )
 );  /* End register modules --------------------------------------------------------------------*/

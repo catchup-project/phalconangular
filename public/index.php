@@ -58,7 +58,7 @@ try {
     // @todo [phalconbegins][multi modules] find the way to use error controller.
     header('HTTP/1.0 404 Not Found');
     echo "<!DOCTYPE html>\n<html>\n<head>\n";
-    echo "<link href='/css/bootstrap.min.css' media='screen' rel='stylesheet' type='text/css' />\n";
+    echo "<link href='/css/bootstrap.css' media='screen' rel='stylesheet' type='text/css' />\n";
     echo "</head>\n";
     echo "<body>\n";
     echo "<div class='jumbotron'>\n";
@@ -75,7 +75,7 @@ try {
     exit;
   } else {
     echo "<!DOCTYPE html>\n<html>\n<head>\n";
-    echo "<link href='/css/bootstrap.min.css' media='screen' rel='stylesheet' type='text/css' />\n";
+    echo "<link href='/css/bootstrap.css' media='screen' rel='stylesheet' type='text/css' />\n";
     echo "</head>\n";
     echo "<body>\n";
     echo "<div class='jumbotron'>\n";

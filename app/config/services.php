@@ -125,23 +125,18 @@ $di->set('dispatcher', function () use ($di) {
  * add router support.
  */
 $di->set('router', function () {
-
-
-
   $router = require __DIR__ . '/routes.php';
 
-  $sFilePath = __DIR__ . '/../admin/config/routes.php';
+  $sFilePath = __DIR__ . '/../backend/config/routes.php';
   if (is_readable($sFilePath)) {
     include_once $sFilePath;
   }
 
-  /*
   $sFilePath = __DIR__ . '/../frontend/config/routes.php';
   if (is_readable($sFilePath)) {
     include_once $sFilePath;
   }
-  */
-
+  $router->setDefaultModule('frontend');
   return $router;
 }); /* End the Router Support */
 

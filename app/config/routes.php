@@ -6,8 +6,6 @@ $router = new Phalcon\Mvc\Router();
 
 $router->removeExtraSlashes(true);
 
-$router->setDefaultModule('frontend');
-
 $sModule = 'frontend';
 
 $router->setDefaults(array(
