@@ -131,7 +131,8 @@ $di->set('router', function() use ($aModules) {
   $router = new \Phalcon\Mvc\Router(false);
 
   $router->add('/admin', array(
-    'module'     => 'backend',
+    'namespace' => 'Admin\\Controllers',
+    'module'     => 'admin',
     'controller' => 'index',
     'action'     => 'index'
   ));
@@ -142,10 +143,12 @@ $di->set('router', function() use ($aModules) {
     'action'     => 'index'
   ));
 
-  $router->add('/users/login', array(
+
+  $router->add('/users/myaccount', array(
+    'namespace' => 'Frontend\\Controllers',
     'module'     => 'frontend',
     'controller' => 'users',
-    'action'     => 'login'
+    'action'     => 'myaccount'
   ));
 
 
@@ -158,6 +161,7 @@ $di->set('router', function() use ($aModules) {
 
 
   $router->add('/', array(
+    'namespace' => 'Frontend\\Controllers',
     'module'     => 'frontend',
     'controller' => 'index',
     'action'     => 'index'
