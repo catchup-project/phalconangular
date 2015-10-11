@@ -22,11 +22,14 @@ $loader->registerDirs(
  */
 $loader->registerNamespaces(
   array(
-    'Frontend\Controllers' => '../app/frontend/controllers/',
-    'Frontend\Models'      => '../app/frontend/models/',
-    'Admin\Controllers'    => '../app/admin/controllers/',
-    'Admin\Models'         => '../app/admin/models/',
     'Libraries'            => $config->application->libraryDir,
     'Modules\Models'      => '../models/'
   )
 )->register(); /* End Registering Namespaces */
+
+/*
+    'Modules\Frontend\Controllers' => '../app/frontend/controllers/',
+    'Modules\Frontend\Models'      => '../app/frontend/models/',
+    'Modules\Backend\Controllers'    => '../app/admin/controllers/',
+    'Modules\Backend\Models'         => '../app/admin/models/',
+ **/

@@ -1,46 +1,41 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_NOTICE);
 
 try {
 
-    /**
-     * Read the configuration
-     */
-    $config = include __DIR__ . "/../app/config/config.php";
+	define('APP_PATH', realpath('..') . '/');
+  /**
+   * Define some useful constants
+   */
+  define('BASE_DIR', str_replace('\\', '/', dirname(__DIR__)));
+  define('APP_DIR', BASE_DIR . '/app');
 
-    /**
-     * Read auto-loader
-     */
-    include __DIR__ . "/../app/config/loader.php";
+  /**
+   * Read the configuration
+   */
+  $config = include APP_DIR . '/config/config.php';
 
-    /**
-     * Read services
-     */
-    include __DIR__ . "/../app/config/services.php";
+  /**
+   * Read auto-loader
+   */
+  include APP_DIR . '/config/loader.php';
 
-    /**
-     * Handle the request
-     */
-    $application = new \Phalcon\Mvc\Application();
-    $application->setDI($di);
+  /**
+   * Read services
+   */
+  include APP_DIR . '/config/services.php';
 
-    $application->registerModules(
-        array(
-            'frontend' => array(
-                'className' => 'Frontend\Module',
-                'path' => '../app/frontend/Module.php',
-            ),
-            'admin' => array(
-                'className' => 'Admin\Module',
-                'path' => '../app/admin/Module.php',
-            )
-        )
-    );
+  /**
+   * Handle the request
+   */
+  $application = new \Phalcon\Mvc\Application($di);
+  set_exception_handler('\Bitfalls\Exceptions\Handler::handle');
 
-    set_exception_handler('\Bitfalls\Exceptions\Handler::handle');
+  // register modules
+  include APP_DIR . '/config/modules.php';
 
-    echo $application->handle()->getContent();
+  echo $application->handle()->getContent();
 
 } catch (PDOException $e) {
 
@@ -56,7 +51,7 @@ try {
     </div>\n\n";
   echo "</body>\n</html>";
   exit;
-} catch (Phalcon\Exception $e){
+} catch (Phalcon\Exception $e) {
 
   if (preg_match("/Module (.*) isn't registered/ius", $e->getMessage()) == 1) {
     // caught module is not registered error!

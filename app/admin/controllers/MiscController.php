@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin\Controllers;
+namespace Modules\Backend\Controllers;
 
 use Bitfalls\Phalcon\ControllerBase;
 
