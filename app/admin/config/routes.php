@@ -23,15 +23,15 @@ $aDefaults = array(
 $aDefaultAction = array(
   'namespace'  => 'Admin\Controllers',
   'module'     => 'admin',
-  'controller' => 2,
+  'controller' => 1,
   'action'     => 'index',
 );
 
 $aControllerAction = array(
   'namespace'  => 'Admin\Controllers',
   'module'     => 'admin',
-  'controller' => 2,
-  'action'     => 3,
+  'controller' => 1,
+  'action'     => 2,
 );
 
 

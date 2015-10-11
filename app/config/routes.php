@@ -17,28 +17,19 @@ $router->setDefaults(array(
   'action' => 'index'
 ));
 
-
-
-$aDefaults = array(
+$router->add('/', array(
   'namespace'  => 'Frontend\Controllers',
-  'module'     => $sModule,
+  'module'     => 'frontend',
   'controller' => 'index',
   'action'     => 'index',
-);
+));
 
-$aDefaultAction = array(
+$router->add('/:controller', array(
   'namespace'  => 'Frontend\Controllers',
-  'module'     => $sModule,
+  'module'     => 'frontend',
   'controller' => 1,
   'action'     => 'index',
-);
-
-$aControllerAction = array(
-  'namespace'  => 'Frontend\Controllers',
-  'module'     => $sModule,
-  'controller' => 1,
-  'action'     => 2,
-);
+));
 
 $router->add('/:controller/:action', array(
   'namespace'  => 'Frontend\Controllers',
@@ -46,12 +37,9 @@ $router->add('/:controller/:action', array(
   'controller' => 1,
   'action'     => 2,
 ));
-
-$router->add('/' . $sModule, $aDefaults);
-$router->add('/' . $sModule . '/:controller', $aDefaultAction);
-$router->add('/' . $sModule . '/:controller/:action', $aControllerAction);
-$router->add('/' . $sModule . '/:controller/:action/:params', array(
-  'module'     => $sModule,
+$router->add('/:controller/:action/:params', array(
+  'namespace'  => 'Frontend\Controllers',
+  'module'     => 'frontend',
   'controller' => 1,
   'action'     => 2,
   'params'     => 3
