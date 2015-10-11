@@ -22,6 +22,7 @@ $loader->registerDirs(
  */
 $loader->registerNamespaces(
   array(
+<<<<<<< HEAD
     'Frontend\Controllers' => '../app/frontend/controllers/',
     'Frontend\Models'      => '../app/frontend/models/',
     'Admin\Controllers'    => '../app/admin/controllers/',
@@ -29,3 +30,18 @@ $loader->registerNamespaces(
     'Libraries'            => $config->application->libraryDir
   )
 )->register(); /* End Registering Namespaces */
+=======
+    'Modules\Frontend\Controllers' => $config->application->controllersDir,
+    'Modules\Backend\Controllers'    => '../app/backend/controllers/',
+    'Libraries'            => $config->application->libraryDir,
+    'Modules\Models'      => '../models/'
+  )
+)->register(); /* End Registering Namespaces */
+
+/*
+    'Modules\Frontend\Controllers' => '../app/frontend/controllers/',
+    'Modules\Frontend\Models'      => '../app/frontend/models/',
+    'Modules\Backend\Controllers'    => '../app/admin/controllers/',
+    'Modules\Backend\Models'         => '../app/admin/models/',
+ **/
+>>>>>>> upstream/master

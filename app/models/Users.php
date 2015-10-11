@@ -81,7 +81,11 @@ class Users extends \Bitfalls\Phalcon\Model
 
         /** Set Up M:M relationship with groups */
         $this->hasMany('id', 'UsersRoles', 'user_id');
+<<<<<<< HEAD
     	//$this->hasManyThrough('UserRoles', 'UsersRoles');
+=======
+        //$this->hasManyThrough('UserRoles', 'UsersRoles');
+>>>>>>> upstream/master
 
         /** Set up 1;M relationship with contacts */
         $this->hasMany('id', 'Contacts', 'user_id');

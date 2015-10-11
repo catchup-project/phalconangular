@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 .settings
 .config
 .idea
 .git
 /app/config/config.php
+=======
+/app/config/config.php
+/vendor
+/.idea
+/composer.lock
+>>>>>>> upstream/master

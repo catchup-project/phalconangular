@@ -1,6 +1,6 @@
 <?php
 
-namespace Admin;
+namespace Modules\Backend;
 
 use Bitfalls\Phalcon\ModuleConfig;
 use Phalcon\Mvc\Dispatcher;

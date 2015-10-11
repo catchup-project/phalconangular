@@ -43,7 +43,7 @@ class ModuleConfig implements ModuleDefinitionInterface
         $dispatcher = $di->get('dispatcher');
         $sModuleName = explode(DIRECTORY_SEPARATOR, trim($this->getReflectionPath(), '/'));
         $sModuleName = array_pop($sModuleName);
-        $dispatcher->setDefaultNamespace(ucfirst($sModuleName)."\Controllers\\");
+        //$dispatcher->setDefaultNamespace(ucfirst($sModuleName)."\Controllers\\");
         $di->set('dispatcher', $dispatcher);
 
         //Registering the view component

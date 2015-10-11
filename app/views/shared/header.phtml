@@ -3,7 +3,7 @@
 ?>
 
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top">
 
         <?php if (isset($errorMessage)) : ?>
             <?php $errorCode = (isset($errorCode)) ? $errorCode : '666' ?>
@@ -31,10 +31,24 @@
 
             <?php if (Users::getCurrent()) : ?>
                 <p class="navbar-text pull-right">
-                    <a href="/users/logout" title="Sign in">Log out</a>
-                </p>
-                <p class="navbar-text pull-right">
-                    <a href="/users/myaccount" title="My Account">My Account</a>
+                    <ul class="nav nav-pills pull-right">
+                      <li class="dropdown">
+                          <a class="dropdown-toggle"
+                             data-toggle="dropdown"
+                             href="#">
+                              My Account
+                              <b class="caret"></b>
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li class="nav-header">My Account</li>
+                              <li><a href="/users/myaccount" title="My Account">My Profile</a></li>
+                              <li><a href="#" title="User Settings"><em>User Settings</em></a></li>
+                              <li><a href="#" title="Recent Searches"><em>Recent Searches</em></a></li>
+                              <li class="nav-header">Other</li>
+                              <li><a href="/users/logout" title="Logout">Logout</a></li>
+                          </ul>
+                      </li>
+                    </ul>
                 </p>
             <?php else : ?>
                 <p class="navbar-text pull-right">
@@ -44,7 +58,7 @@
 
             <?php if (Users::getCurrent() && Users::getCurrent()->hasSelfRole('admin')) : ?>
                 <p class="navbar-text pull-right">
-                    <a href="/admin" title="Administration">Administration</a>
+                    <a href="/admin/index" title="Administration">Admin</a>
                 </p>
             <?php endif; ?>
         </div>
@@ -66,7 +80,12 @@
     </div>
 
     <?php if (isset($moduleName) && isset($bLoadModuleMenu) && $bLoadModuleMenu) :
-        ?>
+      echo "the current moduleName is ".$moduleName;
+      if(empty($moduleName))
+      {
+        $moduleName = 'backend';
+      }
+      ?>
         <div class="moduleMenu header-content-search-area">
           <ul class="nav nav-pills">
             <li class="dropdown">
