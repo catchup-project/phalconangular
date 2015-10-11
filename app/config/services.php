@@ -93,13 +93,12 @@ $di->set('cookies', function () {
 /**
  * Dispatcher use a default namespace
  */
-/*
 $di->set('dispatcher', function () {
   $dispatcher = new Dispatcher();
   $dispatcher->setDefaultNamespace('Vokuro\Controllers');
   return $dispatcher;
 });
-*/
+
 
 
 $di->set('dispatcher', function () use ($di) {
@@ -131,11 +130,40 @@ $di->set('router', function () {
   if (is_readable($sFilePath)) {
     include_once $sFilePath;
   }
-
+  /*
   $sFilePath = __DIR__ . '/../frontend/config/routes.php';
   if (is_readable($sFilePath)) {
     include_once $sFilePath;
   }
+  */
+  $router->add('/', array(
+    'namespace'  => 'Modules\Frontend\Controllers',
+    'module'     => 'frontend',
+    'controller' => 'index',
+    'action'     => 'index',
+  ));
+
+  $router->add('/users/login', array(
+    'namespace'  => 'Modules\Frontend\Controllers',
+    'module'     => 'frontend',
+    'controller' => 'users',
+    'action'     => 'login',
+  ));
+
+  $router->add('/users/logout', array(
+    'namespace'  => 'Modules\Frontend\Controllers',
+    'module'     => 'frontend',
+    'controller' => 'users',
+    'action'     => 'logout',
+  ));
+
+  $router->add('/users/myaccount', array(
+    'namespace'  => 'Modules\Frontend\Controllers',
+    'module'     => 'frontend',
+    'controller' => 'users',
+    'action'     => 'myaccount',
+  ));
+
   $router->setDefaultModule('frontend');
   return $router;
 }); /* End the Router Support */

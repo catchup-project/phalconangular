@@ -1,6 +1,6 @@
 <?php
 
-namespace Frontend\Controllers;
+namespace Modules\Frontend\Controllers;
 
 use Bitfalls\Exceptions\UserException;
 use Bitfalls\Mailer\Mailer;

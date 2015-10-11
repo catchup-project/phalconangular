@@ -22,6 +22,8 @@ $loader->registerDirs(
  */
 $loader->registerNamespaces(
   array(
+    'Modules\Frontend\Controllers' => $config->application->controllersDir,
+    'Modules\Backend\Controllers'    => '../app/backend/controllers/',
     'Libraries'            => $config->application->libraryDir,
     'Modules\Models'      => '../models/'
   )
