@@ -107,69 +107,27 @@ $di->set('dispatcher', function () use ($di) {
   return $dispatcher;
 });
 
-$di->set('router', function() use ($aModules) {
 
-  $router = new Phalcon\Mvc\Router();
+/**
+ * add router support.
+ */
+$di->set('router', function () {
+  $router = require __DIR__ . '/routes.php';
 
-  $router->removeExtraSlashes(true);
-
-  $router->setDefaultModule('frontend');
-  /*
-   *  Example with all possible options:
-   * $router->add('/:module/:controller/:action/:params', array(
-      'module'     => 1,
-      'controller' => 2,
-      'action'     => 3,
-      'params'     => 4
-  ));
-   *
-   **/
+  $sFilePath = __DIR__ . '/../admin/config/routes.php';
+  if (is_readable($sFilePath)) {
+    include_once $sFilePath;
+  }
 
   /*
-   * Let's divide the routes up in Core Routes (NameSpace Vokuro) en Modules Routes (Modules\(module name))
-   */
-  $router = new \Phalcon\Mvc\Router(false);
-
-  $router->add('/admin', array(
-    'namespace' => 'Admin\\Controllers',
-    'module'     => 'admin',
-    'controller' => 'index',
-    'action'     => 'index'
-  ));
-
-  $router->add('/index', array(
-    'module'     => 'frontend',
-    'controller' => 'index',
-    'action'     => 'index'
-  ));
-
-
-  $router->add('/users/myaccount', array(
-    'namespace' => 'Frontend\\Controllers',
-    'module'     => 'frontend',
-    'controller' => 'users',
-    'action'     => 'myaccount'
-  ));
-
-
-  $router->add('/users/login', array(
-    'namespace' => 'Frontend\\Controllers',
-    'module'     => 'frontend',
-    'controller' => 'users',
-    'action'     => 'login'
-  ));
-
-
-  $router->add('/', array(
-    'namespace' => 'Frontend\\Controllers',
-    'module'     => 'frontend',
-    'controller' => 'index',
-    'action'     => 'index'
-  ));
+  $sFilePath = __DIR__ . '/../frontend/config/routes.php';
+  if (is_readable($sFilePath)) {
+    include_once $sFilePath;
+  }
+  */
 
   return $router;
-
-});
+}); /* End the Router Support */
 
 $aServices = array(
   // Generic

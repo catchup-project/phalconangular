@@ -66,7 +66,12 @@
     </div>
 
     <?php if (isset($moduleName) && isset($bLoadModuleMenu) && $bLoadModuleMenu) :
-        ?>
+      echo "the current moduleName is ".$moduleName;
+      if(empty($moduleName))
+      {
+        $moduleName = 'admin';
+      }
+      ?>
         <div class="moduleMenu header-content-search-area">
             <?php echo $this->partial('../../' . $moduleName . '/views/partials/menu'); ?>
         </div>
