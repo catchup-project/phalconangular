@@ -63,7 +63,7 @@ try {
     echo "<body>\n";
     echo "<div class='jumbotron'>\n";
     // another error!
-    echo "<h1>Module (.*) isn't registered/h1>";
+    echo "<h1>Module (.*) isn't registered</h1>";
     echo "<h2>" . get_class($e), ": ", $e->getMessage(), "</h2><br />\n";
     //echo " File=", $e->getFile(), "<br />\n";
     //echo " Line=", $e->getLine(), "<br />\n";
