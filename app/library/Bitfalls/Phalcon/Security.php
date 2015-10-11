@@ -82,8 +82,10 @@ class Security extends Plugin
             if ($this->getDI()->get('request')->isAjax()) {
                 die(json_encode(array('status' => 'error', 'message' => 'Insufficient permissions')));
             } else {
-                $this->getDI()->get('response')->redirect('/users/login', true);
-                return false;
+                echo "modulename ".$sModuleName." not frontend?";
+              exit;
+                //$this->getDI()->get('response')->redirect('/users/login', true);
+                //return false;
             }
         }
 

@@ -5,6 +5,15 @@ namespace Bitfalls\Phalcon;
 use Phalcon\Dispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\Volt;
+
+/**
+ * Modules trait.<br><br>
+ * Use this file to manage register services in one place.<br>
+ * To use this trait, set your module like Phalcon Module.php but extend \Extend\ModulesAbstract<br>
+ * Setup $controller_namespace property for Module class to your default controller namespace<br>
+ * Set $module_full_path property to __DIR__ for easy to manage.<br>
+ */
 
 /**
  * This is an extensible Module configurator for Multi Module apps. Just extend and give it a namespace
@@ -20,14 +29,14 @@ class ModuleConfig implements ModuleDefinitionInterface
     /** @var null */
     protected $mConfig = null;
 
-    public function registerAutoloaders()
+    public function registerAutoloaders(\Phalcon\DiInterface $di = null)
     {
     }
 
     /**
      * Register specific services for the module
      */
-    public function registerServices($di)
+    public function registerServices(\Phalcon\DiInterface $di = null)
     {
 
         /** @var Dispatcher $dispatcher */
